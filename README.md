@@ -1,7 +1,7 @@
 # cat
 Test for Cat Technologies
 
-#Setup Instructions
+# Setup Instructions
 * Clone the code
 * Create a DB named `cat`
 * Open terminal and navigate to the code folder
