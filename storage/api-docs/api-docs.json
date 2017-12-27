@@ -1,0 +1,1176 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "host": "ec2-34-215-82-154.us-west-2.compute.amazonaws.com/laraveltest/public/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/assets/upload": {
+            "post": {
+                "tags": [
+                    "Assets"
+                ],
+                "description": "Upload the asset and get the S3 URL for the corresponding upload",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Pass the User Id who is uploading the asset",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "asset",
+                        "in": "formData",
+                        "description": "Actual file to be uploaded",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success with an S3 URL"
+                    },
+                    "500": {
+                        "description": "Could not save asset information"
+                    },
+                    "501": {
+                        "description": "Could not upload asset due to technical reasons"
+                    }
+                }
+            }
+        },
+        "/assets/get": {
+            "post": {
+                "tags": [
+                    "Assets"
+                ],
+                "description": "Get the Cloud URL of asset by just passing the asset name with extension",
+                "parameters": [
+                    {
+                        "name": "asset_name",
+                        "in": "query",
+                        "description": "Name of the asset for example: asset_name.jpg",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id of the user accessing the asset",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success with an S3 URL"
+                    },
+                    "500": {
+                        "description": "Could not find asset. Please try again with a different asset name."
+                    }
+                }
+            }
+        },
+        "/electronics/fabrication": {
+            "post": {
+                "tags": [
+                    "Forms"
+                ],
+                "description": "Submit data for the fabrication form",
+                "parameters": [
+                    {
+                        "name": "length",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "width",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "layers",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "qty",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "thickness",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "material",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "design_in_panel",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "min_track_spacing",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "min_hole_size",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "solder_mask",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "silk_screen",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "surface_finish",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "via_process",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "finished_copper",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "price_matrix",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "pcb_file_url",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pcb_filename",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "build_days",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "notes",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Quotes fetched"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/categories/add": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Add a new category",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/categories/list": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Get the list of all active categories",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                }
+            }
+        },
+        "/categories/subs/add": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Add a new category",
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/categories/subs/list": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Get the list of all active sub categories",
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/categories/subs/components/add": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Add a new component",
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/categories/subs/components/list": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "description": "Get the list of all components",
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sub_category_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/jobs/create": {
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "description": "Creates a new job",
+                "parameters": [
+                    {
+                        "name": "request_type",
+                        "in": "query",
+                        "description": "The value of request_type should be ***fabrication*** for now. Later on we will update the further options for this field",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "The exact amount which user paid for this job",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "params",
+                        "in": "query",
+                        "description": "The exact form data which user submitted against which he requested the quotes",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "The User Id who is creating the job",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns job_id"
+                    },
+                    "500": {
+                        "description": "Could not create job due to some technical problem"
+                    },
+                    "501": {
+                        "description": "Job already exists"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/jobs/request": {
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "description": "Save the quote retrieved from different manufactuers corresponding to each request. If the update param is set to ***true*** then the required params are ***id*** and ***status***. Otherwise, all other params except id would be required",
+                "parameters": [
+                    {
+                        "name": "update",
+                        "in": "query",
+                        "description": "The value should be either ***true*** or ***false***. If set to ***true*** then the Quote is supposed to be updated and in this case, only status and Quote Id should be sent. Rest of other columns are required to be sent in case update paramter is set to be ***false***",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "This is Quote Id",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "request_type",
+                        "in": "query",
+                        "description": "The value of request_type should be ***fabrication*** for now. Later on we will update the further options for this field",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "The exact amount which user paid for this job",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "delivery_time",
+                        "in": "query",
+                        "description": "The delivery time given by manufacturer in the quote",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "time_unit",
+                        "in": "query",
+                        "description": "The delivery time unit. It value would be mostly ***days*** or may be ***hours*** in rare cases.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "manufacturer_id",
+                        "in": "query",
+                        "description": "The Manufacturer who has sent the particular quote",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "The value of status could be one of ***PENDING***, ***REJECTED*** and ***ACCEPTED***",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "is_sent",
+                        "in": "query",
+                        "description": "It's value could be one of ***Y*** or ***N***. If this manufacturer quote has been selected by the user the ***is_sent*** has to be ***Y***. Remember, if there are 10 quotes (for example) then quote no 9's ***is_sent*** is set to be ***Y*** and its ***status*** is set to ***PENDING*** then all other quote's ***is_sent*** should be set to ***N***. Now, if the manufcturer rejects the quote due to some reason, then quote no 9's ***is_sent*** would remain set to ***Y*** but its ***status*** would be ***REJECTED*** and then the user will select (for example) quote no 5 then its ***is_sent*** should be set to ***Y*** and its ***status*** will be ***PENDING*** (which is the default one)",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Quote saved successfully"
+                    },
+                    "500": {
+                        "description": "Could not save the Quote due to some technical reason"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/manufacturer/requests": {
+            "post": {
+                "tags": [
+                    "Manufacturer"
+                ],
+                "description": "Gets you all the Job Requests with Pending status for a Manufacturer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The User Id for whome we need to find the Job Requests",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved dataset"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users/requests": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Gets you all the Quotes(whose ***is_sent*** status is set to ***N*** and ***status*** is ***PENDING***) for a particular Job Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The Job Id corresponding to which the Pending Quotes you need to find out",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved dataset"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users/jobs": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Gets you all the Jobs posted by a User",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The User Id whose jobs you need to fetch from the system",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "If left blank, should return all the Jobs otherwise will return the jobs with the specified status value",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved dataset"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/admin/jobs/search": {
+            "post": {
+                "tags": [
+                    "Admin Jobs"
+                ],
+                "description": "Gets you all the Jobs posted by user(s)",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The User Id whose jobs you need to fetch from the system",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "If left blank, should return all the Jobs otherwise will return the jobs with the specified status value",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved dataset"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/jobs/respond": {
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "description": "Captures the response of a manufacturer against the Job Request Sent to him",
+                "parameters": [
+                    {
+                        "name": "response",
+                        "in": "query",
+                        "description": "The value of response could be either ***ACCEPTED*** or ***REJECTED***",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "job_request_id",
+                        "in": "query",
+                        "description": "This is the id of the Job Request Sent to the manufacturer. ***The job_request_id is same as the quote_id (For understanding the Back-End point of view)***",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job Request status updated successfully"
+                    },
+                    "500": {
+                        "description": "Failed to update the Job Request Status"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/jobs/status/update": {
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "description": "Updates the status of an already running job",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "description": "Job Id of the job whose status is required to be updated",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status which needs to be updated and it could out of ***PENDING***, ***IN_PROGRESS***, ***IN_REVIEW***, ***DONE***, ***DISPUTED***, ***CANCELLED***",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id who is updating the status",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the user is needed to be sent",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job Status updated successfully"
+                    },
+                    "500": {
+                        "description": "Failed to update the Job Status"
+                    },
+                    "501": {
+                        "description": "Failed to log the job status"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/admin/jobs/update": {
+            "post": {
+                "tags": [
+                    "Admin Jobs"
+                ],
+                "description": "Updates the details(Status or Amount) of an already running job",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "description": "Job Id of the job whose details are required to be updated",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status which needs to be updated and it could out of ***PENDING***, ***IN_PROGRESS***, ***IN_REVIEW***, ***DONE***, ***DISPUTED***, ***CANCELLED***",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "Amount of the job",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id who is updating the status",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the user is needed to be sent",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job Status updated successfully"
+                    },
+                    "500": {
+                        "description": "Failed to update the Job details"
+                    },
+                    "501": {
+                        "description": "Failed to log the job details"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Common"
+                ],
+                "description": "Authenticates a user",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email Id of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns JWT token which will be valid for sometime. You may need to store it in cache in order to access the other API's. In case of expired token, the user will need to re-login in order to get the new token."
+                    },
+                    "500": {
+                        "description": "Error message"
+                    }
+                }
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "tags": [
+                    "Common"
+                ],
+                "description": "Registers a user, manufacturer and a technician",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Full Name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email Id of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_type",
+                        "in": "query",
+                        "description": "The value of user_type could be one of ***user***, ***manufacturer*** and ***technician***",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully"
+                    },
+                    "500": {
+                        "description": "User registeration failed due to technical reasons"
+                    }
+                }
+            }
+        },
+        "/components/data/add": {
+            "post": {
+                "tags": [
+                    "Components"
+                ],
+                "description": "Add the component information to the DB.",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Pass the User Id who is adding the component",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the information",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "info",
+                        "in": "query",
+                        "description": "Information in JSON(string) form",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success with an id of the record saved."
+                    },
+                    "500": {
+                        "description": "Could not save component information"
+                    }
+                }
+            }
+        },
+        "/components/data/single": {
+            "post": {
+                "tags": [
+                    "Components"
+                ],
+                "description": "Get the component information by just passing the component name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the component",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id of the user accessing the component",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success with component information"
+                    },
+                    "500": {
+                        "description": "Could not find component. Please try again with a different component name."
+                    }
+                }
+            }
+        },
+        "/components/data/search": {
+            "post": {
+                "tags": [
+                    "Components"
+                ],
+                "description": "Search components by name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the component",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id of the user triggering the components search",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success with components list"
+                    },
+                    "500": {
+                        "description": "Could not find component matching your criteria. Please try again with a different component name."
+                    }
+                }
+            }
+        },
+        "/admin/users/search": {
+            "post": {
+                "tags": [
+                    "Admin Users"
+                ],
+                "description": "Gets you all the User(s)",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The User Id whose profile details you need to fetch from the system",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "If left blank, should return all the Users otherwise will return the users with the specified status value",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieved dataset"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/admin/users/suspend": {
+            "post": {
+                "tags": [
+                    "Admin Users"
+                ],
+                "description": "Suspends a user",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Job Id of the job whose status is required to be updated",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile suspended successfully"
+                    },
+                    "500": {
+                        "description": "Failed to suspend the User Profile"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/admin/users/resume": {
+            "post": {
+                "tags": [
+                    "Admin Users"
+                ],
+                "description": "Resumes a user account",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Job Id of the job whose status is required to be resumed",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile resumed successfully"
+                    },
+                    "500": {
+                        "description": "Failed to resumed the User Profile"
+                    }
+                },
+                "security": [
+                    {
+                        "token": [
+                            "send:token"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user/balance": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Gets the current balance of a user's wallet",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Pass the User Id whose wallet's balance we need to fetch",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Wallet balance amount"
+                    },
+                    "500": {
+                        "description": "Invalid user id"
+                    },
+                    "501": {
+                        "description": "Could not fetch data due to technical reasons"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "scopes": {
+                "send:token": "Send the token"
+            }
+        }
+    }
+}
